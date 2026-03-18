@@ -1,0 +1,65 @@
+version: 2
+
+project_name: roster
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: roster
+    main: .
+    binary: roster
+    ldflags:
+      - -s -w
+      - -X github.com/robinojw/roster/cmd.version={{.Version}}
+      - -X github.com/robinojw/roster/cmd.commit={{.Commit}}
+      - -X github.com/robinojw/roster/cmd.buildDate={{.Date}}
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+
+archives:
+  - id: roster
+    name_template: "roster_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    files:
+      - LICENSE
+
+checksum:
+  name_template: "checksums.txt"
+  algorithm: sha256
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^ci:"
+      - Merge pull request
+  groups:
+    - title: Features
+      regexp: "^feat"
+    - title: Bug Fixes
+      regexp: "^fix"
+
+brews:
+  - name: roster
+    repository:
+      owner: robinojw
+      name: homebrew-roster
+      branch: main
+      token: "{{ .Env.GH_PAT }}"
+    directory: Formula
+    homepage: "https://github.com/robinojw/roster"
+    description: "Scaffold agent personas and orchestration for AI coding harnesses"
+    license: "MIT"
+    install: |
+      bin.install "roster"
+    test: |
+      system "#{bin}/roster", "--version"

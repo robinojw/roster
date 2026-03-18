@@ -1,0 +1,5 @@
+roster
+*.exe
+dist/
+.DS_Store
+docs/plans/
