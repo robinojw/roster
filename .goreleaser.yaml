@@ -48,18 +48,18 @@ changelog:
     - title: Bug Fixes
       regexp: "^fix"
 
-brews:
-  - name: roster
-    repository:
-      owner: robinojw
-      name: homebrew-roster
-      branch: main
-      token: "{{ .Env.GH_PAT }}"
-    directory: Formula
-    homepage: "https://github.com/robinojw/roster"
-    description: "Scaffold agent personas and orchestration for AI coding harnesses"
-    license: "MIT"
-    install: |
-      bin.install "roster"
-    test: |
-      system "#{bin}/roster", "--version"
+# brews:
+#   - name: roster
+#     repository:
+#       owner: robinojw
+#       name: homebrew-roster
+#       branch: main
+#       token: "{{ .Env.GH_PAT }}"
+#     directory: Formula
+#     homepage: "https://github.com/robinojw/roster"
+#     description: "Scaffold agent personas and orchestration for AI coding harnesses"
+#     license: "MIT"
+#     install: |
+#       bin.install "roster"
+#     test: |
+#       system "#{bin}/roster", "--version"
