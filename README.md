@@ -1,3 +1,5 @@
+<img width="1024" height="1024" alt="3d483d82-4def-4ce1-99d9-3814fb6a7d80" src="https://github.com/user-attachments/assets/bd2ea59b-7f9e-47d5-af40-626da01d19d5" />
+
 # roster
 
 A Go CLI that analyses any repository and scaffolds an agent persona library with orchestration instructions for AI coding harnesses (Claude Code, Codex, Opencode).
