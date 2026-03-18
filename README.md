@@ -9,10 +9,21 @@ Roster handles the scaffolding — the model selects, hydrates, and orchestrates
 ## Install
 
 ```bash
-brew install robinojw/roster/roster
+curl -sSfL https://raw.githubusercontent.com/robinojw/roster/main/install.sh | sh
 ```
 
-Or download a binary from [Releases](https://github.com/robinojw/roster/releases).
+This downloads the latest binary and configures hooks for Claude Code, Codex, and Opencode automatically.
+
+Or install manually:
+
+```bash
+# Homebrew (once tap is configured)
+brew install robinojw/roster/roster
+
+# Or download a binary from Releases
+```
+
+See [Releases](https://github.com/robinojw/roster/releases) for all binaries.
 
 ## Usage
 
