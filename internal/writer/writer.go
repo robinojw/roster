@@ -17,6 +17,7 @@ func WriteAll(repoPath string, signals *analyser.RepoSignals) (*Result, error) {
 		return nil, fmt.Errorf("load personas: %w", err)
 	}
 
+	selectedPersonas := personas.Select(allPersonas, signals)
 	result := &Result{}
 
 	signalsFiles, err := WriteSignals(repoPath, signals)
@@ -25,19 +26,19 @@ func WriteAll(repoPath string, signals *analyser.RepoSignals) (*Result, error) {
 	}
 	result.FilesWritten = append(result.FilesWritten, signalsFiles...)
 
-	personaFiles, err := WritePersonas(repoPath, allPersonas)
+	personaFiles, err := WritePersonas(repoPath, selectedPersonas)
 	if err != nil {
 		return nil, fmt.Errorf("write personas: %w", err)
 	}
 	result.FilesWritten = append(result.FilesWritten, personaFiles...)
 
-	claudeFiles, err := WriteManagedSection(repoPath, "CLAUDE.md", signals, allPersonas)
+	claudeFiles, err := WriteManagedSection(repoPath, "CLAUDE.md", signals, selectedPersonas)
 	if err != nil {
 		return nil, fmt.Errorf("write CLAUDE.md: %w", err)
 	}
 	result.FilesWritten = append(result.FilesWritten, claudeFiles...)
 
-	agentsFiles, err := WriteManagedSection(repoPath, "AGENTS.md", signals, allPersonas)
+	agentsFiles, err := WriteManagedSection(repoPath, "AGENTS.md", signals, selectedPersonas)
 	if err != nil {
 		return nil, fmt.Errorf("write AGENTS.md: %w", err)
 	}
