@@ -29,6 +29,9 @@ func TestPersonaHasRequiredFields(t *testing.T) {
 		if persona.Description == "" {
 			t.Errorf("persona %s missing Description", persona.ID)
 		}
+		if persona.Role == "" {
+			t.Errorf("persona %s missing Role", persona.ID)
+		}
 		if len(persona.Triggers) == 0 {
 			t.Errorf("persona %s missing Triggers", persona.ID)
 		}
@@ -43,6 +46,23 @@ func TestPersonaContent(t *testing.T) {
 	for _, persona := range all {
 		if persona.Content == "" {
 			t.Errorf("persona %s has empty Content", persona.ID)
+		}
+	}
+}
+
+func TestPersonaRoleIsValid(t *testing.T) {
+	validRoles := map[string]bool{
+		"planning":  true,
+		"execution": true,
+		"review":    true,
+	}
+	all, err := LoadAll()
+	if err != nil {
+		t.Fatalf("LoadAll failed: %v", err)
+	}
+	for _, persona := range all {
+		if !validRoles[persona.Role] {
+			t.Errorf("persona %s has invalid role %q (want planning, execution, or review)", persona.ID, persona.Role)
 		}
 	}
 }

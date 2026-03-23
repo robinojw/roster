@@ -88,8 +88,8 @@ func TestIntegrationFullPipeline(t *testing.T) {
 	if err != nil {
 		t.Fatalf("read personas dir: %v", err)
 	}
-	if len(entries) != 11 {
-		t.Errorf("expected 11 persona files, got %d", len(entries))
+	if len(entries) != 10 {
+		t.Errorf("expected 10 persona files (signal-selected), got %d", len(entries))
 	}
 
 	claudeContent, err := os.ReadFile(filepath.Join(repoPath, "CLAUDE.md"))
@@ -118,8 +118,8 @@ func TestIntegrationFullPipeline(t *testing.T) {
 		t.Error("AGENTS.md missing roster:start")
 	}
 
-	if len(result.FilesWritten) < 14 {
-		t.Errorf("expected at least 14 files written, got %d", len(result.FilesWritten))
+	if len(result.FilesWritten) < 13 {
+		t.Errorf("expected at least 13 files written, got %d", len(result.FilesWritten))
 	}
 }
 

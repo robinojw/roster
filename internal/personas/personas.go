@@ -11,6 +11,7 @@ type Persona struct {
 	ID          string   `yaml:"id"`
 	Name        string   `yaml:"name"`
 	Description string   `yaml:"description"`
+	Role        string   `yaml:"role"`
 	Triggers    []string `yaml:"triggers"`
 	Content     string   `yaml:"-"`
 }
